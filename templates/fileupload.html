@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+  .pgbtns{
+    width: 150px;color: rgb(63, 126, 251);border: none;height: 50px;background: #833ab4;
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d,#833ab4);
+    background: linear-gradient(to right, #fcb045, #fd1d1d,#833ab4);
+    color: #fff;
+    transition:all 0.3s ease ;
+  }
+  .pgbtns:hover{
+    background: -webkit-linear-gradient(to right, #392a16, #7b2a2a,#8c0ae3);
+    background: linear-gradient(to right, #3ede1a, #fd1d1d,#a87ec4);
+color: rgba(204, 252, 33, 0.937);
+}
+svg{
+margin-left: 40px;
+color:red;
+}
+svg:hover{
+color: rgb(58, 9, 238);
+}
+.name{
+        color:blue;
+    }
+    .name:hover{
+        color: red;
+    }
+    .btn:hover{
+        background: rgba(239, 83, 26, 0.849);
+
+    }
+    .upload{
+        background-color:rgb(211, 89, 187);
+    }
+</style>
+<body style="background-color:rgb(181, 183, 144);">
+    <nav class="navbar" style="background-color:rgb(12, 12, 12) ;height: 110px;margin-bottom: 0%;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle tgbtn" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation" style="background-color:rgb(130, 126, 126);">
+              <span class="icon-bar" style="background-color: white;"></span>
+              <span class="icon-bar" style="background-color: white;"></span>
+              <span class="icon-bar" style="background-color: white;"></span>
+            </button>
+            <a class="navbar-brand" href="#"  style="padding:3px;"><h1 style="margin-left:70px ;font-size: 50px;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;color: rgb(6, 110, 170);font-weight: 500;text-shadow: 2px 2px rgb(201, 218, 255);font-weight: 800;">FILE UPLOADER</h1></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 200px ;background-color:rgb(10, 10, 10) ;margin-top: 15px;">
+                <li>
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="{% url 'logout' %}"><button class=" btn btn-large pgbtns">LOG OUT</button></a>
+                  </div>
+                  </li>
+                </ul>
+          </div>
+        </div>
+      </nav>
+<center>
+    <div class="container-fluid">
+<form METHOD="POST" action="{% url 'upload' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table style="margin-top:50px;margin-bottom:50px;">
+        <tr>
+            <th>
+    <label style="margin-right:10px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+        <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+        <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+      </svg></label>
+            </th>
+            <th>
+        <input type="file" id="file" name="file" style="width:300px" height="50px">
+                <aside style="color: red;">{{error}}</aside>
+            </th>
+            <th>
+    <input type="submit" value="UPLOAD" class="btn btn-primary upload" style="height: 40px; width:100px;color:white;">
+            </th>
+        </tr>
+    </table>
+</form>
+<a href="{% url 'userportal' %}"><button class="btn btn-default" style="width:300px;margin: 10px;"> click to PORTAL DETAILS</button></a>
+        <table class="table table-bordered table-hover" style="background-color: rgba(246, 207, 231, 0.721);">
+            <tr style="background-color:rgb(127, 111, 111) ;color:white">
+            <th><h4>FILE NAME</h4></th>
+            <th><h4>USER</h4></th>
+            <th><h4>DATE</h4></th>
+                <th><h4>TYPE</h4></th>
+            </tr>
+
+        {% for i in files %}
+            <tr>
+                <td>
+        <form  METHOD="POST" action="{% url 'download' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="submit" value="{{i.filename}}" name="name" style="background:none;border:none;" class="name">
+        </form>
+                </td>
+                <td>
+        <p>{{i.user}}</p>
+                </td>
+                <td>
+        <p>{{i.date}}</p>
+                </td>
+                <td>
+                    {{i.type}}
+                </td>
+            </tr>
+             {% endfor %}
+        </table>
+    </div>
+    </center>
+</body>
+</html>

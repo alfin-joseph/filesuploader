@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+  .pgbtns{
+    width: 150px;color: rgb(63, 126, 251);border: none;height: 50px;background: #833ab4;
+    background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d,#833ab4);
+    background: linear-gradient(to right, #fcb045, #fd1d1d,#833ab4);
+    color: #fff;
+    transition:all 0.3s ease ;
+  }
+  .pgbtns:hover{
+    background: -webkit-linear-gradient(to right, #392a16, #7b2a2a,#8c0ae3);
+    background: linear-gradient(to right, #3ede1a, #fd1d1d,#a87ec4);
+color: rgba(204, 252, 33, 0.937);
+}
+svg{
+margin-left: 40px;
+color:red;
+}
+svg:hover{
+color: rgb(58, 9, 238);
+}
+</style>
+<body style="background-color:rgb(181, 183, 144);">
+    <nav class="navbar" style="background-color:rgb(12, 12, 12) ;height: 110px;margin-bottom: 0%;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle tgbtn" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation" style="background-color:rgb(130, 126, 126);">
+              <span class="icon-bar" style="background-color: white;"></span>
+              <span class="icon-bar" style="background-color: white;"></span>
+              <span class="icon-bar" style="background-color: white;"></span>
+            </button>
+            <a class="navbar-brand" href="#"  style="padding:3px;"><h1 style="margin-left:70px ;font-size: 50px;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;color: rgb(6, 110, 170);font-weight: 500;text-shadow: 2px 2px rgb(201, 218, 255);font-weight: 800;">FILE UPLOADER</h1></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 200px ;background-color:rgb(10, 10, 10) ;margin-top: 15px;">
+                <li>
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="{% url 'home' %}"><button class=" btn btn-large pgbtns">HOME</button></a>
+                  </div>
+                  </li>
+                </ul>
+          </div>
+        </div>
+      </nav>
+{% block body_block %}
+{% endblock %}
+</body>
+</html>
