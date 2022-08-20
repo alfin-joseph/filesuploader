@@ -11,7 +11,7 @@ install python 3.10.1 and python pip
 
 
 3.Clone git repository
-git clone 
+git clone "https://github.com/alfin-joseph/filesuploader"
 
 
 4.install requirements
